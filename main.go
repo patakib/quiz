@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"log"
 	"math"
@@ -26,7 +27,11 @@ func readCsvFile(path string) [][]string {
 }
 
 func main() {
-	records := readCsvFile("problems.csv")
+
+	fileNamePtr := flag.String("filename", "problems.csv", "Provide the file name where the quiz data is located.")
+	flag.Parse()
+
+	records := readCsvFile(*fileNamePtr)
 	var correctAnswers float64 = 0
 	var wrongAnswers float64 = 0
 
